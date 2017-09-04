@@ -99,12 +99,13 @@ public class MyBadgeView extends android.support.v7.widget.AppCompatImageView {
      * @return
      */
     private Paint.FontMetrics getFontMetrics(float baseY) {
-        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
         // 计算每一个坐标
         float topY = baseY + fontMetrics.top;
         float ascentY = baseY + fontMetrics.ascent;
         float descentY = baseY + fontMetrics.descent;
         float bottomY = baseY + fontMetrics.bottom;
+        Log.v("xhw","getFontMetrics descentY "+descentY+" bottomY "+bottomY+" topY "+topY+" height "+(descentY-ascentY));
         return fontMetrics;
     }
 
@@ -158,6 +159,10 @@ public class MyBadgeView extends android.support.v7.widget.AppCompatImageView {
         //文本的矩形
         textRect = measureTextBound(mTextPaint, numStr);
 
+        int rectHeight=textRect.height();
+        float metricsHeight=getFontMetrics(0).bottom;
+        //http://892848153.iteye.com/blog/2205002
+        Log.v("xhw","rectHeight "+rectHeight+" freHeight "+metricsHeight);
 
         if (isCircle()) {//圆形的
             //绘制外面的大圆形
